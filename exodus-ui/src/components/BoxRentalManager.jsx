@@ -61,7 +61,12 @@ const BoxRentalManager = () => {
               type="text"
               placeholder="Customer name..."
             ></input>
-            <input required className="p-3" type="date"></input>
+            <input
+              required
+              value={new Date().toISOString().substring(0, 10)}
+              className="p-3"
+              type="date"
+            ></input>
             <input required className="p-3" type="date"></input>
             <input
               required
