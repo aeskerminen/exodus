@@ -4,7 +4,7 @@ const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
   const [rentedBoxes, setRentedBoxes] = useState(0);
 
-  const [showCreationModal, setShowCreationModal] = useState(true);
+  const [showCreationModal, setShowCreationModal] = useState(false);
 
   const [rentalAssignments, setRentalAssignments] = useState([]);
 
