@@ -4,6 +4,8 @@ const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
   const [rentedBoxes, setRentedBoxes] = useState(0);
 
+  const [showCreationModal, setShowCreationModal] = useState(true);
+
   const generateExampleAssignment = () => {
     return {
       name: "Artturi Kerminen",
@@ -22,16 +24,63 @@ const BoxRentalManager = () => {
     setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
   };
 
+  const createAssignment = (e) => {
+    e.preventDefault();
+  };
+
+  const Modal = () => {
+    return (
+      <div
+        className="w-full h-full absolute top-0 left-0 flex justify-center items-center"
+        style={{ backgroundColor: "#000000A0", backdropFilter: "blur(5px)" }}
+      >
+        <div className="w-1/3 bg-black pb-3 pl-3 pr-3 pt-1">
+          <button
+            className="p-2 mb-2 rounded-full bg-red-500"
+            onClick={() => setShowCreationModal(false)}
+          ></button>{" "}
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={(e) => createAssignment(e)}
+          >
+            <input
+              required
+              className="p-2"
+              type="text"
+              placeholder="Customer name..."
+            ></input>
+            <input required className="p-3" type="date"></input>
+            <input required className="p-3" type="date"></input>
+            <input
+              required
+              className="p-3"
+              type="number"
+              placeholder="Amount of boxes..."
+            ></input>
+            <button
+              className="p-3 mt-2 mb-2 border-2 w-fit m-auto rounded"
+              type="submit"
+            >
+              Create
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div>
-      <div className="m-auto p-4 border-2 border-black rounded w-fit">
+    <div className="w-full h-full p-4">
+      {showCreationModal && <Modal></Modal>}
+      <div className="m-auto p-4 border-2 border-black rounded w-fit mb-4">
         <p>Total boxes: {totalBoxes}</p>
         <p>Rented boxes: {rentedBoxes}</p>
       </div>
-      <div className="m-auto p-2 flex flex-col gap-2">
+      <div className="m-auto p-4 flex flex-col gap-2 w-full border-2 border-black rounded">
         <button
           style={{ backgroundColor: "#343434" }}
-          className="p-2 shadow rounded-lg w-fit"
+          className="p-2 shadow rounded-lg w-fit border-2"
+          onClick={() => setShowCreationModal(true)}
         >
           Add rental
         </button>
