@@ -6,6 +6,8 @@ const BoxRentalManager = () => {
 
   const [showCreationModal, setShowCreationModal] = useState(true);
 
+  const [rentalAssignments, setRentalAssignments] = useState([]);
+
   const generateExampleAssignment = (
     name,
     dateOfRental,
@@ -17,11 +19,9 @@ const BoxRentalManager = () => {
       dateOfRental,
       dateOfReturn,
       numberOfBoxes,
-      id: crypto.randomUUID(),
+      id: rentalAssignments.length
     };
   };
-
-  const [rentalAssignments, setRentalAssignments] = useState([]);
 
   const deleteAssignment = (id) => {
     setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
@@ -63,7 +63,7 @@ const BoxRentalManager = () => {
             ></input>
             <input
               required
-              value={new Date().toISOString().substring(0, 10)}
+              defaultValue={new Date().toISOString().substring(0, 10)}
               className="p-3"
               type="date"
             ></input>
