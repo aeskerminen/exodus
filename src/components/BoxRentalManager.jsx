@@ -6,19 +6,22 @@ const BoxRentalManager = () => {
 
   const [showCreationModal, setShowCreationModal] = useState(true);
 
-  const generateExampleAssignment = () => {
+  const generateExampleAssignment = (
+    name,
+    dateOfRental,
+    dateOfReturn,
+    numberOfBoxes
+  ) => {
     return {
-      name: "Artturi Kerminen",
-      dateOfRental: new Date().toJSON(),
-      dateOfReturn: new Date().toJSON(),
-      numberOfBoxes: 4,
+      name,
+      dateOfRental,
+      dateOfReturn,
+      numberOfBoxes,
       id: crypto.randomUUID(),
     };
   };
 
-  const [rentalAssignments, setRentalAssignments] = useState([
-    ...Array.from(Array(10).keys()).map((e) => generateExampleAssignment()),
-  ]);
+  const [rentalAssignments, setRentalAssignments] = useState([]);
 
   const deleteAssignment = (id) => {
     setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
@@ -26,6 +29,15 @@ const BoxRentalManager = () => {
 
   const createAssignment = (e) => {
     e.preventDefault();
+
+    const newAssignment = generateExampleAssignment(
+      e.target[0].value,
+      e.target[1].value,
+      e.target[2].value,
+      e.target[3].value
+    );
+
+    setRentalAssignments([...rentalAssignments, newAssignment]);
   };
 
   const Modal = () => {
