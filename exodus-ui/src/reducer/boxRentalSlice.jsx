@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [];
 
-export const counterSlice = createSlice({
+export const boxRentalSlice = createSlice({
   name: "rentalAssignments",
   initialState,
   reducers: {
     add: (state, action) => {
-      state.concat(action.payload);
+      state.push(action.payload);
     },
     remove: (state, action) => {
-      state.filter((e) => e.id !== action.payload.id);
+      return state.filter((e) => e.id !== action.payload);
     },
   },
 });
 
-export const { add, remove } = counterSlice.actions;
+export const { add, remove } = boxRentalSlice.actions;
 
-export default counterSlice.reducer;
+export default boxRentalSlice.reducer;

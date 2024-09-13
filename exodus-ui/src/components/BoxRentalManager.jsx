@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove } from "../reducer/boxRentalSlice";
 
 const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
@@ -6,7 +8,8 @@ const BoxRentalManager = () => {
 
   const [showCreationModal, setShowCreationModal] = useState(false);
 
-  const [rentalAssignments, setRentalAssignments] = useState([]);
+  const dispatch = useDispatch();
+  const rentalAssignments = useSelector((state) => state.rentalAssignments);
 
   const generateExampleAssignment = (
     name,
@@ -19,12 +22,13 @@ const BoxRentalManager = () => {
       dateOfRental,
       dateOfReturn,
       numberOfBoxes,
-      id: rentalAssignments.length
+      id: rentalAssignments.length,
     };
   };
 
   const deleteAssignment = (id) => {
-    setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
+    dispatch(remove(id));
+    //    setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
   };
 
   const createAssignment = (e) => {
@@ -37,7 +41,7 @@ const BoxRentalManager = () => {
       e.target[3].value
     );
 
-    setRentalAssignments([...rentalAssignments, newAssignment]);
+    dispatch(add(newAssignment));
   };
 
   const Modal = () => {
