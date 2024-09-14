@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../reducer/boxRentalSlice";
+import boxRentalService from "../services/boxRentalService";
 
 const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
@@ -42,6 +43,7 @@ const BoxRentalManager = () => {
     );
 
     dispatch(add(newAssignment));
+    boxRentalService.addRentalAssignment(newAssignment);
   };
 
   const Modal = () => {

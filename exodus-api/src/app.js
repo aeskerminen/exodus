@@ -8,6 +8,6 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 
-app.use("/api/data", router);
+app.use("/data", router);
 
 module.exports = app;

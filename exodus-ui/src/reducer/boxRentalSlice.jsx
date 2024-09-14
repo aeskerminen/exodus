@@ -17,4 +17,6 @@ export const boxRentalSlice = createSlice({
 
 export const { add, remove } = boxRentalSlice.actions;
 
+
+
 export default boxRentalSlice.reducer;
