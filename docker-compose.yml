@@ -49,6 +49,11 @@ services:
       - database
     volumes:
       - ./flyway/sql/:/flyway/sql
-    command: -connectRetries=60 -baselineOnMigrate=true migrate
+    environment:
+      FLYWAY_CLEAN_DISABLED: "false"
+    entrypoint: [
+      "flyway", "clean"
+    ]
+    command: -connectRetries=60 -baselineOnMigrate=true migrate repair
     env_file:
       - project.env
