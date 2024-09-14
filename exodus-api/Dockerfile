@@ -2,6 +2,8 @@ FROM node:latest
 
 EXPOSE 4000
 
+RUN npm install -g nodemon
+
 WORKDIR /exodus
 
 ENV PATH /app/node_modules/.bin:$PATH
@@ -12,4 +14,4 @@ RUN npm install
 
 COPY .. ..
 
-CMD [ "node", "src/index.js" ]
+CMD [ "nodemon", "src/index.js" ]
