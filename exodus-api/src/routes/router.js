@@ -10,7 +10,16 @@ router.post("/rentalAssignment", (req, res) => {
     .then(() => {
       console.log("Connected to PostgreSQL database");
 
-      client.query("SELECT * FROM RENTAL_ASSIGNMENTS", (err, result) => {
+      const query_text =
+        "INSERT INTO rental_assignments(customer_name, begin_date, end_date, amount_boxes) VALUES ($1, $2, $3, $4) RETURNING *";
+      const query_values = [
+        body.name,
+        body.dateOfRental,
+        body.dateOfReturn,
+        body.numberOfBoxes,
+      ];
+
+      client.query(query_text, query_values, (err, result) => {
         if (err) {
           console.error("Error executing query", err);
         } else {
@@ -25,6 +34,8 @@ router.post("/rentalAssignment", (req, res) => {
           .catch((err) => {
             console.error("Error closing connection", err);
           });
+
+        return res.status(200).json(result.rows[0]).end();
       });
     })
     .catch((err) => {
