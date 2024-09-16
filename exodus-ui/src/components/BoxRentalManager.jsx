@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addRentalAssignment, remove } from "../reducer/boxRentalSlice";
+import { addRentalAssignment, fetchRentalAssignments, remove } from "../reducer/boxRentalSlice";
 
 const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
@@ -10,6 +10,12 @@ const BoxRentalManager = () => {
 
   const dispatch = useDispatch();
   const rentalAssignments = useSelector((state) => state.rentalAssignments);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchRentalAssignments())
+  }, [])
 
   const generateExampleAssignment = (
     name,
