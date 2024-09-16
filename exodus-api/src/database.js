@@ -1,4 +1,4 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
 
 const dbConfig = {
   user: "username",
@@ -8,6 +8,6 @@ const dbConfig = {
   database: "database",
 };
 
-const client = new Client(dbConfig);
+const pool = new Pool({ ...dbConfig });
 
-module.exports = client;
+module.exports = pool;
