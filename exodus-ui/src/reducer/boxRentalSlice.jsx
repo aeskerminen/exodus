@@ -26,6 +26,11 @@ export const addRentalAssignment = (rentalAssignment) => async (dispatch) => {
   boxRentalService.addRentalAssignment(rentalAssignment);
 };
 
+export const deleteRentalAssignment = (id) => async (dispatch) => {
+  dispatch(remove(id));
+  boxRentalService.removeRentalAssignment(id);
+};
+
 export const fetchRentalAssignments = () => async (dispatch) => {
   const res = await boxRentalService.getRentalAssignments();
   dispatch(addAll(res));
