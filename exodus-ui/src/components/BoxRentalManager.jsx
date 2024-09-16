@@ -96,6 +96,8 @@ const BoxRentalManager = () => {
     );
   };
 
+  if(rentalAssignments.length === 0) return (<div>Loading...</div>)
+
   return (
     <div className="w-full h-full p-4">
       {showCreationModal && <Modal></Modal>}
@@ -124,10 +126,10 @@ const BoxRentalManager = () => {
                   onClick={() => deleteAssignment(e.id)}
                 ></button>
                 <div className="flex flex-col gap-2">
-                  <p>Name: {e.name}</p>
-                  <p>Date of Rental: {e.dateOfRental}</p>
-                  <p>Return date: {e.dateOfReturn}</p>
-                  <p>Number of boxes: {e.numberOfBoxes}</p>
+                  <p>Name: {e.customer_name}</p>
+                  <p>Date of Rental: {e.begin_date}</p>
+                  <p>Return date: {e.end_date}</p>
+                  <p>Number of boxes: {e.amount_boxes}</p>
                 </div>
               </div>
             );
