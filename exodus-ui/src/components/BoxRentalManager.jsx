@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addRentalAssignment, fetchRentalAssignments, remove } from "../reducer/boxRentalSlice";
+import {
+  addRentalAssignment,
+  deleteRentalAssignment,
+  fetchRentalAssignments,
+  remove,
+} from "../reducer/boxRentalSlice";
 
 const BoxRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
@@ -14,8 +19,8 @@ const BoxRentalManager = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchRentalAssignments())
-  }, [])
+    dispatch(fetchRentalAssignments());
+  }, []);
 
   const generateExampleAssignment = (
     name,
@@ -33,7 +38,7 @@ const BoxRentalManager = () => {
   };
 
   const deleteAssignment = (id) => {
-    dispatch(remove(id));
+    dispatch(deleteRentalAssignment(id));
     //    setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
   };
 
@@ -47,7 +52,7 @@ const BoxRentalManager = () => {
       e.target[3].value
     );
 
-    dispatch(addRentalAssignment(newAssignment)); 
+    dispatch(addRentalAssignment(newAssignment));
   };
 
   const Modal = () => {
@@ -96,7 +101,7 @@ const BoxRentalManager = () => {
     );
   };
 
-  if(rentalAssignments.length === 0) return (<div>Loading...</div>)
+  if (rentalAssignments.length === 0) return <div>Loading...</div>;
 
   return (
     <div className="w-full h-full p-4">

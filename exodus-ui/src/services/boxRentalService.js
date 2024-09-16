@@ -3,12 +3,15 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000/api";
 
 const addRentalAssignment = async (assignment) => {
-  const res = await axios.post(`${BASE_URL}/data/rentalAssignment`, assignment);
+  const res = await axios.post(
+    `${BASE_URL}/data/rentalAssignments`,
+    assignment
+  );
   return res.data;
 };
 
 const removeRentalAssignment = async (id) => {
-  const res = await axios.delete(`${BASE_URL}/data/rentalAssignment`, id);
+  const res = await axios.delete(`${BASE_URL}/data/rentalAssignments/${id}`);
   return res.data;
 };
 
