@@ -6,7 +6,7 @@ import {
   fetchRentalAssignments,
 } from "../reducer/boxRentalSlice";
 
-const BoxRentalManager = () => {
+const WarehouseRentalManager = () => {
   const [totalBoxes, setTotalBoxes] = useState(0);
   const [rentedBoxes, setRentedBoxes] = useState(0);
 
@@ -142,4 +142,4 @@ const BoxRentalManager = () => {
   );
 };
 
-export default BoxRentalManager;
+export default WarehouseRentalManager;
