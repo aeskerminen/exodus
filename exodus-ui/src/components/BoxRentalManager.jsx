@@ -23,23 +23,21 @@ const BoxRentalManager = () => {
   }, []);
 
   const generateExampleAssignment = (
-    name,
-    dateOfRental,
-    dateOfReturn,
-    numberOfBoxes
+    customer_name,
+    begin_date,
+    end_date,
+    amount_boxes
   ) => {
     return {
-      name,
-      dateOfRental,
-      dateOfReturn,
-      numberOfBoxes,
-      id: rentalAssignments.length,
+      customer_name,
+      begin_date,
+      end_date,
+      amount_boxes,
     };
   };
 
   const deleteAssignment = (id) => {
     dispatch(deleteRentalAssignment(id));
-    //    setRentalAssignments(rentalAssignments.filter((a) => a.id !== id));
   };
 
   const createAssignment = (e) => {
@@ -101,7 +99,7 @@ const BoxRentalManager = () => {
     );
   };
 
-  if (rentalAssignments.length === 0) return <div>Loading...</div>;
+  if (rentalAssignments === null) return <div>Loading...</div>;
 
   return (
     <div className="w-full h-full p-4">

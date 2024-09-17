@@ -30,10 +30,10 @@ router.post("/rentalAssignments", async (req, res) => {
   const query_text =
     "INSERT INTO rental_assignments(customer_name, begin_date, end_date, amount_boxes) VALUES ($1, $2, $3, $4) RETURNING *";
   const query_values = [
-    body.name,
-    body.dateOfRental,
-    body.dateOfReturn,
-    body.numberOfBoxes,
+    body.customer_name,
+    body.begin_date,
+    body.end_date,
+    body.amount_boxes,
   ];
 
   pool.query(query_text, query_values, (err, result) => {

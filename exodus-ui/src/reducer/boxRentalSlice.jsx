@@ -22,8 +22,8 @@ export const boxRentalSlice = createSlice({
 export const { add, addAll, remove } = boxRentalSlice.actions;
 
 export const addRentalAssignment = (rentalAssignment) => async (dispatch) => {
-  dispatch(add(rentalAssignment));
-  boxRentalService.addRentalAssignment(rentalAssignment);
+  const res = await boxRentalService.addRentalAssignment(rentalAssignment);
+  dispatch(add(res));
 };
 
 export const deleteRentalAssignment = (id) => async (dispatch) => {
