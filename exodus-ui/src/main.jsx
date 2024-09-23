@@ -6,10 +6,15 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import BoxRentalManager from "./components/BoxRentalManager.jsx";
 import WarehouseRentalManager from "./components/WarehouseRentalManager.jsx";
+import ManagementScreen from "./components/ManagementScreen.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <ManagementScreen></ManagementScreen>,
+  },
+  {
+    path: "/management",
     element: <Outlet></Outlet>,
     children: [
       {
