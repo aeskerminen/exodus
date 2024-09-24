@@ -18,6 +18,7 @@ services:
     restart: "no"
     volumes:
       - ./exodus-api/:/exodus
+      - /exodus/node_modules
     expose:
       - 4000
     depends_on:
@@ -31,6 +32,7 @@ services:
     restart: "no"
     volumes:
       - ./exodus-ui/:/exodus
+      - /exodus/node_modules
     expose:
       - 3000
     depends_on:
