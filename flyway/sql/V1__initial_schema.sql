@@ -4,7 +4,7 @@ CREATE TABLE rental_assignments (
     begin_date TEXT NOT NULL,
     end_date TEXT NOT NULL,
     amount_boxes INTEGER NOT NULL
-)
+);
 
 CREATE TABLE warehouse_rentals (
     id SERIAL PRIMARY KEY,
