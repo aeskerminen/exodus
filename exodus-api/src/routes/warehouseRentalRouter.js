@@ -4,7 +4,7 @@ const client = require("../database");
 const pool = require("../database");
 
 router.get("/", async (req, res) => {
-  const query_text = "SELECT * FROM rental_assignments";
+  const query_text = "SELECT * FROM warehouse_rentals";
 
   const client = await pool.connect();
 
@@ -28,12 +28,12 @@ router.post("/", async (req, res) => {
   const client = await pool.connect();
 
   const query_text =
-    "INSERT INTO rental_assignments(customer_name, begin_date, end_date, amount_boxes) VALUES ($1, $2, $3, $4) RETURNING *";
+    "INSERT INTO warehouse_rentals(customer_name, begin_date, end_date, unit) VALUES ($1, $2, $3, $4) RETURNING *";
   const query_values = [
     body.customer_name,
     body.begin_date,
     body.end_date,
-    body.amount_boxes,
+    body.unit,
   ];
 
   pool.query(query_text, query_values, (err, result) => {
@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
 
   const client = await pool.connect();
 
-  const query_text = `DELETE FROM rental_assignments WHERE id = ${id}`;
+  const query_text = `DELETE FROM warehouse_rentals WHERE id = ${id}`;
 
   pool.query(query_text, (err, result) => {
     if (err) {
