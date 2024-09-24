@@ -3,7 +3,7 @@ const client = require("../database");
 
 const pool = require("../database");
 
-router.get("/rentalAssignments", async (req, res) => {
+router.get("/", async (req, res) => {
   const query_text = "SELECT * FROM rental_assignments";
 
   const client = await pool.connect();
@@ -21,7 +21,7 @@ router.get("/rentalAssignments", async (req, res) => {
   });
 });
 
-router.post("/rentalAssignments", async (req, res) => {
+router.post("/", async (req, res) => {
   const body = req.body;
   console.log(body);
 
@@ -49,7 +49,7 @@ router.post("/rentalAssignments", async (req, res) => {
   });
 });
 
-router.delete("/rentalAssignments/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const id = req.params.id;
 
   const client = await pool.connect();
