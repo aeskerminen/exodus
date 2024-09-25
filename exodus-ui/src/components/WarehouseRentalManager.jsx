@@ -39,9 +39,9 @@ const WarehouseRentalManager = () => {
   const warehouseRentals = useSelector((state) => state.warehouseRentals);
 
   useEffect(() => {
-    console.log(warehouseRentals)
-    dispatch(fetchWarehouseRentals())
-  }, [])
+    console.log(warehouseRentals);
+    dispatch(fetchWarehouseRentals());
+  }, []);
 
   const createRental = (e) => {
     e.preventDefault();
@@ -124,25 +124,34 @@ const WarehouseRentalManager = () => {
           Add rental
         </button>
         <div className="grid grid-cols-4 gap-2 p-2 border-2 border-black rounded h-full">
-          {warehouseUnits.map((unit) => {
-            const normalizedSize = Math.ceil((unit.size - 1) / (12 - 1));
-            const rented = warehouseRentals.filter(elem => `Unit ${elem.unit}` === unit.identifier).length > 0
-            return (
-              <div
-                style={{ backgroundColor: "#343434" }}
-                className={`relative col-span-${normalizedSize} p-2 flex flex-col justify-center items-center`}
-              >
-                <button
-                  style={{ backgroundColor: rented ? "red" : "green" }}
-                  className="absolute top-0 left-0 ml-2 mt-2 p-2 rounded-full"
-                ></button>
-                <div className="flex justify-center items-center h-full">
-                  {unit.identifier}
-                </div>
-              </div>
-            );
-          })}
+          {warehouseUnits.map((unit) => (
+            <WarehouseUnitContainer
+              unit={unit}
+              warehouseRentals={warehouseRentals}
+            ></WarehouseUnitContainer>
+          ))}
         </div>
+      </div>
+    </div>
+  );
+};
+
+const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
+  const normalizedSize = Math.ceil((unit.size - 1) / (12 - 1));
+  const rented =
+    warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)
+      .length > 0;
+  return (
+    <div
+      style={{ backgroundColor: "#343434" }}
+      className={`relative col-span-${normalizedSize} p-2 flex flex-col justify-center items-center`}
+    >
+      <button
+        style={{ backgroundColor: rented ? "red" : "green" }}
+        className="absolute top-0 left-0 ml-2 mt-2 p-2 rounded-full"
+      ></button>
+      <div className="flex justify-center items-center h-full">
+        {unit.identifier}
       </div>
     </div>
   );
