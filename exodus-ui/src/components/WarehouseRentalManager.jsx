@@ -124,8 +124,9 @@ const WarehouseRentalManager = () => {
           Add rental
         </button>
         <div className="grid grid-cols-4 gap-2 p-2 border-2 border-black rounded h-full">
-          {warehouseUnits.map((unit) => (
+          {warehouseUnits.map((unit,i) => (
             <WarehouseUnitContainer
+              key={i}
               unit={unit}
               warehouseRentals={warehouseRentals}
             ></WarehouseUnitContainer>
@@ -141,6 +142,7 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
   const rented =
     warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)
       .length > 0;
+    const rentalData = warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)[0]
   return (
     <div
       style={{ backgroundColor: "#343434" }}
@@ -150,8 +152,11 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
         style={{ backgroundColor: rented ? "red" : "green" }}
         className="absolute top-0 left-0 ml-2 mt-2 p-2 rounded-full"
       ></button>
-      <div className="flex justify-center items-center h-full">
+      <div className="flex flex-col justify-center items-center h-full">
         {unit.identifier}
+        <div className="p-2">
+          {rentalData !== undefined && Object.entries(rentalData).map((e,i)  => <p key={i}>{e[0].toUpperCase()}: {e[1]}</p>)}
+        </div>
       </div>
     </div>
   );
