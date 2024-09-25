@@ -13,13 +13,16 @@ export const warehouseRentalSlice = createSlice({
     addAll: (state, action) => {
       state.push(...action.payload);
     },
+    set: (state, action) => {
+      return action.payload
+    },
     remove: (state, action) => {
       return state.filter((e) => e.id !== action.payload);
     },
   },
 });
 
-export const { add, addAll, remove } = warehouseRentalSlice.actions;
+export const { add, addAll, set, remove } = warehouseRentalSlice.actions;
 
 export const addwarehouseRental = (warehouseRental) => async (dispatch) => {
   const res = await warehouseRentalService.addWarehouseRental(warehouseRental);
@@ -33,7 +36,7 @@ export const deleteWarehouseRental = (id) => async (dispatch) => {
 
 export const fetchWarehouseRentals = () => async (dispatch) => {
   const res = await warehouseRentalService.getWarehouseRentals();
-  dispatch(addAll(res));
+  dispatch(set(res));
 };
 
 export default warehouseRentalSlice.reducer;

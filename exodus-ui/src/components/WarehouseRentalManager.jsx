@@ -30,8 +30,7 @@ const warehouseUnits = [
 ];
 
 const WarehouseRentalManager = () => {
-  const [totalUnits, setTotalUnits] = useState(0);
-  const [rentedUnits, setRentedUnits] = useState(0);
+  const [totalUnits, setTotalUnits] = useState(warehouseUnits.length);
 
   const [showCreationModal, setShowCreationModal] = useState(false);
 
@@ -39,7 +38,6 @@ const WarehouseRentalManager = () => {
   const warehouseRentals = useSelector((state) => state.warehouseRentals);
 
   useEffect(() => {
-    console.log(warehouseRentals);
     dispatch(fetchWarehouseRentals());
   }, []);
 
@@ -113,7 +111,7 @@ const WarehouseRentalManager = () => {
       {showCreationModal && <Modal></Modal>}
       <div className="m-auto p-4 border-2 border-black rounded w-fit">
         <p>Total units: {totalUnits}</p>
-        <p>Rented units: {rentedUnits}</p>
+        <p>Rented units: {warehouseRentals.length}</p>
       </div>
       <div className="m-auto p-4 flex flex-col gap-2 w-full h-full border-2 border-black rounded">
         <button
