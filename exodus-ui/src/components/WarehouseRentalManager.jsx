@@ -54,11 +54,15 @@ const WarehouseRentalManager = () => {
     dispatch(addwarehouseRental(newRental));
   };
 
+  const deleteRental = (id) => {
+    dispatch(deleteWarehouseRental(id));
+  };
+
   if (warehouseRentals === null) return <div>Loading...</div>;
 
   return (
     <div className="h-screen p-4 flex flex-col gap-2">
-      {showCreationModal && <Modal></Modal>}
+      {showCreationModal && <Modal createRental={createRental} setShowCreationModal={setShowCreationModal}></Modal>}
       <div className="m-auto p-4 border-2 border-black rounded w-fit">
         <p>Total units: {totalUnits}</p>
         <p>Rented units: {warehouseRentals.length}</p>
@@ -77,6 +81,7 @@ const WarehouseRentalManager = () => {
               key={i}
               unit={unit}
               warehouseRentals={warehouseRentals}
+              deleteRental={deleteRental}
             ></WarehouseUnitContainer>
           ))}
         </div>
@@ -85,7 +90,7 @@ const WarehouseRentalManager = () => {
   );
 };
 
-const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
+const WarehouseUnitContainer = ({ unit, warehouseRentals, deleteRental }) => {
   const normalizedSize = Math.ceil((unit.size - 1) / (12 - 1));
   const rented =
     warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)
@@ -112,6 +117,7 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
             <button
               style={{ backgroundColor: "#343434" }}
               className="p-2 rounded shadow"
+              onClick={() => deleteRental(rentalData.id)}
             >
               Remove rental
             </button>
@@ -128,7 +134,7 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
   );
 };
 
-const Modal = () => {
+const Modal = ({createRental, setShowCreationModal}) => {
   return (
     <div
       className="w-full h-full absolute top-0 left-0 flex justify-center items-center"
