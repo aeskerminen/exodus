@@ -13,13 +13,16 @@ export const boxRentalSlice = createSlice({
     addAll: (state, action) => {
       state.push(...action.payload);
     },
+    set: (state, action) => {
+      return action.payload;
+    },
     remove: (state, action) => {
       return state.filter((e) => e.id !== action.payload);
     },
   },
 });
 
-export const { add, addAll, remove } = boxRentalSlice.actions;
+export const { add, addAll, set, remove } = boxRentalSlice.actions;
 
 export const addRentalAssignment = (rentalAssignment) => async (dispatch) => {
   const res = await boxRentalService.addRentalAssignment(rentalAssignment);
@@ -33,7 +36,7 @@ export const deleteRentalAssignment = (id) => async (dispatch) => {
 
 export const fetchRentalAssignments = () => async (dispatch) => {
   const res = await boxRentalService.getRentalAssignments();
-  dispatch(addAll(res));
+  dispatch(set(res));
 };
 
 export default boxRentalSlice.reducer;
