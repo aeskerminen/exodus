@@ -54,56 +54,6 @@ const WarehouseRentalManager = () => {
     dispatch(addwarehouseRental(newRental));
   };
 
-  const Modal = () => {
-    return (
-      <div
-        className="w-full h-full absolute top-0 left-0 flex justify-center items-center"
-        style={{
-          backgroundColor: "#000000A0",
-          backdropFilter: "blur(5px)",
-          zIndex: 9999,
-        }}
-      >
-        <div className="w-1/3 bg-black pb-3 pl-3 pr-3 pt-1">
-          <button
-            className="p-2 mb-2 rounded-full bg-red-500"
-            onClick={() => setShowCreationModal(false)}
-          ></button>{" "}
-          <form
-            className="flex flex-col gap-2"
-            onSubmit={(e) => createRental(e)}
-          >
-            <input
-              required
-              className="p-2"
-              type="text"
-              placeholder="Customer name..."
-            ></input>
-            <input
-              required
-              defaultValue={new Date().toISOString().substring(0, 10)}
-              className="p-3"
-              type="date"
-            ></input>
-            <input required className="p-3" type="date"></input>
-            <input
-              required
-              className="p-3"
-              type="number"
-              placeholder="Unit"
-            ></input>
-            <button
-              className="p-3 mt-2 mb-2 border-2 w-fit m-auto rounded"
-              type="submit"
-            >
-              Create
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  };
-
   if (warehouseRentals === null) return <div>Loading...</div>;
 
   return (
@@ -122,7 +72,7 @@ const WarehouseRentalManager = () => {
           Add rental
         </button>
         <div className="grid grid-cols-4 gap-2 p-2 border-2 border-black rounded h-full">
-          {warehouseUnits.map((unit,i) => (
+          {warehouseUnits.map((unit, i) => (
             <WarehouseUnitContainer
               key={i}
               unit={unit}
@@ -140,21 +90,86 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals }) => {
   const rented =
     warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)
       .length > 0;
-    const rentalData = warehouseRentals.filter((elem) => `Unit ${elem.unit}` === unit.identifier)[0]
+  const rentalData = warehouseRentals.filter(
+    (elem) => `Unit ${elem.unit}` === unit.identifier
+  )[0];
   return (
     <div
       style={{ backgroundColor: "#343434" }}
-      className={`relative col-span-${normalizedSize} p-2 flex flex-col justify-center items-center`}
+      className={`relative col-span-${normalizedSize} p-2 flex flex-col justify-center items-center shadow-md`}
     >
       <button
         style={{ backgroundColor: rented ? "red" : "green" }}
         className="absolute top-0 left-0 ml-2 mt-2 p-2 rounded-full"
       ></button>
-      <div className="flex flex-col justify-center items-center h-full">
-        {unit.identifier}
-        <div className="p-2">
-          {rentalData !== undefined && Object.entries(rentalData).map((e,i)  => <p key={i}>{e[0].toUpperCase()}: {e[1]}</p>)}
-        </div>
+      <div className="flex flex-col gap-2 justify-center h-full">
+        <p className="font-bold">{unit.identifier}</p>
+        {rentalData !== undefined && (
+          <div
+            style={{ backgroundColor: "#242424" }}
+            className="p-4 border-2 border-black rounded flex flex-col gap-1"
+          >
+            <button
+              style={{ backgroundColor: "#343434" }}
+              className="p-2 rounded shadow"
+            >
+              Remove rental
+            </button>
+            {rentalData !== undefined &&
+              Object.entries(rentalData).map((e, i) => (
+                <p key={i}>
+                  {e[0].toUpperCase()}: {e[1]}
+                </p>
+              ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const Modal = () => {
+  return (
+    <div
+      className="w-full h-full absolute top-0 left-0 flex justify-center items-center"
+      style={{
+        backgroundColor: "#000000A0",
+        backdropFilter: "blur(5px)",
+        zIndex: 9999,
+      }}
+    >
+      <div className="w-1/3 bg-black pb-3 pl-3 pr-3 pt-1">
+        <button
+          className="p-2 mb-2 rounded-full bg-red-500"
+          onClick={() => setShowCreationModal(false)}
+        ></button>{" "}
+        <form className="flex flex-col gap-2" onSubmit={(e) => createRental(e)}>
+          <input
+            required
+            className="p-2"
+            type="text"
+            placeholder="Customer name..."
+          ></input>
+          <input
+            required
+            defaultValue={new Date().toISOString().substring(0, 10)}
+            className="p-3"
+            type="date"
+          ></input>
+          <input required className="p-3" type="date"></input>
+          <input
+            required
+            className="p-3"
+            type="number"
+            placeholder="Unit"
+          ></input>
+          <button
+            className="p-3 mt-2 mb-2 border-2 w-fit m-auto rounded"
+            type="submit"
+          >
+            Create
+          </button>
+        </form>
       </div>
     </div>
   );
