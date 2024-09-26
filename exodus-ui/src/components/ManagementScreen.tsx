@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ManagementScreen = () => {
+const ManagementScreen = () : React.JSX.Element => {
   return (
     <div className="w-screen h-screen p-4 flex justify-center items-center">
       <div className="flex justify-center items-center gap-2">
