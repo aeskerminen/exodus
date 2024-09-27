@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import BoxRentalManager from "./components/BoxRentalManager.jsx";
 import WarehouseRentalManager from "./components/WarehouseRentalManager.jsx";
 import ManagementScreen from "./components/ManagementScreen.tsx";
+import MoveManager from "./components/MoveManager.tsx"
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "warehouse",
         element: <WarehouseRentalManager></WarehouseRentalManager>,
       },
+      {
+        path: "move",
+        element: <MoveManager></MoveManager>
+      }
     ],
   },
 ]);

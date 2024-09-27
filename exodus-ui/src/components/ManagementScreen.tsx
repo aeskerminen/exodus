@@ -19,6 +19,13 @@ const ManagementScreen = () : React.JSX.Element => {
         >
           Warehouse rental manager
         </Link>
+        <Link
+          style={{ backgroundColor: "#343434" }}
+          className="p-3 shadow rounded-lg w-fit shadow"
+          to={"/management/move"}
+        >
+          Move manager
+        </Link>
       </div>
     </div>
   );
