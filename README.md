@@ -4,8 +4,8 @@
 
 ### Features
 
-- [ ] Rental box management
-- [ ] Rental warehouse unit management
+- [x] Rental box management
+- [x] Rental warehouse unit management
 - [ ] Moving management
 - [ ] Employee management
 
