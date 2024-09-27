@@ -3,7 +3,7 @@ import "./index.css";
 import { store } from "./store.js";
 import { Provider } from "react-redux";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import BoxRentalManager from "./components/BoxRentalManager.jsx";
+import BoxRentalManager from "./components/BoxRentalManager.tsx";
 import WarehouseRentalManager from "./components/WarehouseRentalManager.jsx";
 import ManagementScreen from "./components/ManagementScreen.tsx";
 import MoveManager from "./components/MoveManager.tsx"
