@@ -103,11 +103,11 @@ const BoxRentalManager = () => {
   return (
     <div className="w-full h-full p-4">
       {showCreationModal && <Modal></Modal>}
-      <div className="m-auto p-4 border-2 border-black rounded w-fit mb-4">
+      <div className="m-auto p-4 rounded w-fit mb-4">
         <p>Total boxes: {totalBoxes}</p>
         <p>Rented boxes: {rentedBoxes}</p>
       </div>
-      <div className="m-auto p-4 flex flex-col gap-2 w-full border-2 border-black rounded">
+      <div className="m-auto p-4 flex flex-col gap-2 w-full rounded">
         <button
           style={{ backgroundColor: "#343434" }}
           className="p-2 shadow rounded-lg w-fit border-2"

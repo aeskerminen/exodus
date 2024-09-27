@@ -63,11 +63,11 @@ const WarehouseRentalManager = () => {
   return (
     <div className="h-screen p-4 flex flex-col gap-2">
       {showCreationModal && <Modal createRental={createRental} setShowCreationModal={setShowCreationModal}></Modal>}
-      <div className="m-auto p-4 border-2 border-black rounded w-fit">
+      <div className="m-auto p-4 rounded w-fit">
         <p>Total units: {totalUnits}</p>
         <p>Rented units: {warehouseRentals.length}</p>
       </div>
-      <div className="m-auto p-4 flex flex-col gap-2 w-full h-full border-2 border-black rounded">
+      <div className="m-auto p-4 flex flex-col gap-2 w-full h-full rounded">
         <button
           style={{ backgroundColor: "#343434" }}
           className="p-2 shadow rounded-lg w-fit border-2"
@@ -75,7 +75,7 @@ const WarehouseRentalManager = () => {
         >
           Add rental
         </button>
-        <div className="grid grid-cols-4 gap-2 p-2 border-2 border-black rounded h-full">
+        <div className="grid grid-cols-4 gap-2 p-2 rounded h-full">
           {warehouseUnits.map((unit, i) => (
             <WarehouseUnitContainer
               key={i}
@@ -112,7 +112,7 @@ const WarehouseUnitContainer = ({ unit, warehouseRentals, deleteRental }) => {
         {rentalData !== undefined && (
           <div
             style={{ backgroundColor: "#242424" }}
-            className="p-4 border-2 border-black rounded flex flex-col gap-1"
+            className="p-4 rounded flex flex-col gap-1"
           >
             <button
               style={{ backgroundColor: "#343434" }}
