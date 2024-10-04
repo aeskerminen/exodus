@@ -1,6 +1,6 @@
 # Exodus
 
-## Exodus is the codename for our custom-made moving company management system.
+## Process management system focused towards moving companies
 
 ### Features
 
